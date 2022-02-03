@@ -8,19 +8,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--README.md
--Changelog.md
+- README.md
+- Changelog.md
 
-### fixed
+### Fixed
 
--two changelog files
+- two changelog files
 
 ## v1.0.0
 
 ### Added
 
--initial gradle project
--CLI implementation
--help feature
--batch file command
--output file command
+- initial gradle project
+- CLI implementation
+- help feature
+- batch file command
+- output file command
+
+## v1.1.0
+
+###
+
+### Fixed
+
+- changelog spacing
