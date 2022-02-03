@@ -13,4 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### fixed
 
--two changelog files 
+-two changelog files
+
+## v1.0.0
+
+### Added
+
+-initial gradle project
+-CLI implementation
+-help feature
+-batch file command
+-output file command
