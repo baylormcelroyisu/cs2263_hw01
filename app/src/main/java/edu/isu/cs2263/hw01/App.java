@@ -4,11 +4,13 @@
 package edu.isu.cs2263.hw01;
 
 import org.apache.commons.cli.*;
-//import java.io.*;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class App {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
 
         //***Definition Stage***
         // create Options object
@@ -23,7 +25,7 @@ public class App {
                 .argName("file")
                 .hasArg(true)
                 .longOpt("batch")
-                .desc("batch file containing expressions to evaluate")
+                .desc("batch file containing expressions to evaluate, must be in user directory")
                 .build();
         options.addOption(batch);
 
@@ -47,27 +49,27 @@ public class App {
         CommandLine cmd = parser.parse(options, args);
 
         //***Interrogation Stage***
+
+        if(args[0].equals("eval")) {
+//
+            if(cmd.hasOption("b")) {
+                String fileName = cmd.getOptionValue("b");
+                String userDirectory = System.getProperty("user.dir");
+                Path path = Paths.get(userDirectory);
+                System.out.println(fileName);
+                System.out.println(path.getParent().toString());
+
+                fileName = path.getParent().toString() + "\\" + fileName;
+                Evaluator.runEvaluatorBat(fileName);
+            }
+            else {
+                Evaluator.runEvaluatorCmd();
+            }
+        }
         //hasOptions checks if option is present or not
-        if (cmd.hasOption("h")) {
+        else if (cmd.hasOption("h")) {
             formatter.printHelp("Evaluator",header, options, footer, true);
         }
-        if(cmd.hasOption("o")) {
-            System.out.println(outCmd(cmd));
-        } else if(cmd.hasOption("b")) {
-            System.out.println(batchCmd(cmd));
-        }
-    }
-    public static String batchCmd(CommandLine cmd) {
-        String str;
-        String fileName = cmd.getOptionValue("b");
 
-        str = "Batch value: " + fileName;
-        return str;
-    }
-    public static String outCmd(CommandLine cmd) {
-        String str;
-        String fileName = cmd.getOptionValue("o");
-        str = "Output value: " + fileName;
-        return str;
     }
 }
