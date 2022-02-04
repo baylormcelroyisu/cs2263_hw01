@@ -27,7 +27,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.1.0
 
-###
+### Added
+
+- evaluator functionality
+- fleshed out cli options for input
 
 ### Fixed
 
