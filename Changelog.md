@@ -35,3 +35,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - changelog spacing
+
+## v1.2.0
+
+### Added
+
+ - output functionality
+ - can output to any text file given location
+
+### Fixed
+
+- files can now be input via absolute path
+- files can no be input via relative path from the users directory
+
+### Removed
+
+- output interface, no longer useful
