@@ -4,13 +4,22 @@
 package edu.isu.cs2263.hw01;
 
 import org.apache.commons.cli.*;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * An application to evaluate simple expressions with command line and file functionality
+ */
+
 public class App {
 
-    public static void main(String[] args) throws ParseException, IOException {
+    /**
+     * Main method which handles the main execution loop
+     * @param args Command Line arguments (-h, -b, -o)
+     * @author Baylor McElroy
+     */
+
+    public static void main(String[] args) throws ParseException {
 
         //***Definition Stage***
         // create Options object
@@ -51,25 +60,46 @@ public class App {
         //***Interrogation Stage***
 
         if(args[0].equals("eval")) {
-//
-            if(cmd.hasOption("b")) {
-                String fileName = cmd.getOptionValue("b");
-                String userDirectory = System.getProperty("user.dir");
-                Path path = Paths.get(userDirectory);
-                System.out.println(fileName);
-                System.out.println(path.getParent().toString());
 
-                fileName = path.getParent().toString() + "\\" + fileName;
-                Evaluator.runEvaluatorBat(fileName);
+            String outputLoc;
+            Path path;
+            String userDirectory = System.getProperty("user.dir");
+            Path userPath = Paths.get(userDirectory);
+
+            if(cmd.hasOption("o")) {
+                //output to file
+                outputLoc = cmd.getOptionValue("o");
+                path = Paths.get(outputLoc);
+                if(!path.isAbsolute()){
+                    path = Paths.get(userPath + "\\" + path);
+                }
+                outputLoc = path.toString();
             }
             else {
-                Evaluator.runEvaluatorCmd();
+                //output to cmd
+                outputLoc = ":cmd";
+            }
+            if(cmd.hasOption("b")) {
+                //read in from batch
+                String fileName = cmd.getOptionValue("b");
+                path = Paths.get(fileName);
+                if(!path.isAbsolute()){
+                    path = Paths.get(userPath + "\\" + path);
+                }
+                Evaluator eval = new Evaluator(path.toString(), outputLoc);
+                eval.runEvaluatorBat();
+            }
+            else {
+                //run with no extra tags
+                Evaluator eval = new Evaluator(outputLoc);
+                eval.runEvaluatorCmd();
             }
         }
-        //hasOptions checks if option is present or not
+        //run help option
         else if (cmd.hasOption("h")) {
             formatter.printHelp("Evaluator",header, options, footer, true);
         }
 
     }
+
 }
