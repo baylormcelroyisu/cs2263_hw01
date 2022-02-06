@@ -27,8 +27,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.1.0
 
-###
+### Added
+
+- evaluator functionality
+- fleshed out cli options for input
 
 ### Fixed
 
 - changelog spacing
+
+## v1.2.0
+
+### Added
+
+ - output functionality
+ - can output to any text file given location
+
+### Fixed
+
+- files can now be input via absolute path
+- files can no be input via relative path from the users directory
+- cleaned up messages related to input files to be less cluttering
+
+### Removed
+
+- output interface, no longer useful
