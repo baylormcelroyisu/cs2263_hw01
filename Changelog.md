@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - files can now be input via absolute path
 - files can no be input via relative path from the users directory
+- cleaned up messages related to input files to be less cluttering
 
 ### Removed
 

@@ -34,7 +34,7 @@ public class App {
                 .argName("file")
                 .hasArg(true)
                 .longOpt("batch")
-                .desc("batch file containing expressions to evaluate, must be in user directory")
+                .desc("batch file containing expressions to evaluate, must an absolute path or relative to user directory")
                 .build();
         options.addOption(batch);
 
@@ -42,7 +42,7 @@ public class App {
         Option output = Option.builder("o")
                 .argName("file").hasArg(true)
                 .longOpt("output")
-                .desc("output file")
+                .desc("output file, must be an absolute path or relative to user directory")
                 .build();
         options.addOption(output);
 
